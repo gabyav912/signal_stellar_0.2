@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Señal Stellar - Temporizador</title>
+
+<style>
+
+body{
+    background:black;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+
+h1{
+    color:gold;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    margin-top:30px;
+}
+
+.contador{
+    padding:20px;
+    font-size:40px;
+    width:120px;
+    border-radius:10px;
+}
+
+.accion{
+    background:red;
+}
+
+.break{
+    background:green;
+}
+
+.temporizador{
+    font-size:50px;
+    margin-top:20px;
+}
+
+.botones{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+button{
+    background:#2ecc71;
+    border:none;
+    padding:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#27ae60;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>SEÑAL-STELLAR</h1>
+<h2>MISION EN CURSO</h2>
+
+<div class="contenedor">
+
+<div>
+<p>acción</p>
+<div class="contador accion" id="accion">0</div>
+</div>
+
+<div>
+<p>break</p>
+<div class="contador break" id="break">0</div>
+</div>
+
+<div>
+<div class="temporizador" id="tiempo">25:00</div>
+</div>
+
+<div class="botones">
+
+<button onclick="recompensas()">recompensas</button>
+<button onclick="empezar()">empezar</button>
+<button onclick="reanudar()">reproducir</button>
+<button onclick="minimizar()">minimizar</button>
+<button onclick="abortar()">abortar</button>
+
+</div>
+
+</div>
+
+<script>
+
+let tiempo = 1500; 
+let intervalo = null;
+let accion = 0;
+let descanso = 0;
+
+function actualizar(){
+    let minutos = Math.floor(tiempo / 60);
+    let segundos = tiempo % 60;
+
+    if(segundos < 10) segundos = "0" + segundos;
+
+    document.getElementById("tiempo").textContent =
+        minutos + ":" + segundos;
+}
+
+function empezar(){
+
+    clearInterval(intervalo);
+
+    tiempo = 1500; 
+    actualizar();
+
+    intervalo = setInterval(() => {
+
+        tiempo--;
+        actualizar();
+
+        if(tiempo <= 0){
+
+            clearInterval(intervalo);
+
+            accion++;
+            document.getElementById("accion").textContent = accion;
+
+            alert("Fin de misión. Tiempo de descanso.");
+
+        }
+
+    },1000);
+
+}
+
+function reanudar(){
+
+    intervalo = setInterval(() => {
+
+        tiempo--;
+        actualizar();
+
+        if(tiempo <= 0){
+            clearInterval(intervalo);
+        }
+
+    },1000);
+
+}
+
+function minimizar(){
+
+    clearInterval(intervalo);
+
+}
+
+function abortar(){
+
+    clearInterval(intervalo);
+
+    tiempo = 1500;
+    actualizar();
+
+}
+
+function recompensas(){
+
+    alert("Sistema de recompensas próximamente");
+
+}
+
+actualizar();
+
+</script>
+
+</body>
+</html>

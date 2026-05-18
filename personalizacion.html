@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Señal Stellar - Personalización</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+font-family:'Times New Roman', Times, serif;
+}
+
+h1{
+color:gold;
+}
+
+.contenedor{
+margin:40px;
+}
+
+input{
+margin:10px;
+padding:5px;
+}
+
+button{
+background:#2ecc71;
+border:none;
+padding:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#27ae60;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>SEÑAL-STELLAR</h1>
+<h2>Personalización</h2>
+
+<div class="contenedor">
+
+<p>color del cartel de "acción"</p>
+<input type="color" id="colorAccion">
+
+<p>color del cartel de "break"</p>
+<input type="color" id="colorBreak">
+
+<p>tiempo del break (minutos)</p>
+<input type="number" id="tiempoBreak">
+
+<p>tiempo del pomodoro (minutos)</p>
+<input type="number" id="tiempoPomodoro">
+
+<p>tiempo de descanso largo (minutos)</p>
+<input type="number" id="tiempoDescanso">
+
+<br><br>
+
+<button onclick="guardar()">guardar cambios</button>
+
+</div>
+
+<script>
+
+function guardar(){
+
+let configuracion = {
+
+colorAccion: document.getElementById("colorAccion").value,
+colorBreak: document.getElementById("colorBreak").value,
+
+tiempoBreak: document.getElementById("tiempoBreak").value,
+tiempoPomodoro: document.getElementById("tiempoPomodoro").value,
+tiempoDescanso: document.getElementById("tiempoDescanso").value
+
+};
+
+localStorage.setItem("configStellar", JSON.stringify(configuracion));
+
+alert("Cambios guardados");
+
+}
+
+</script>
+
+</body>
+</html>

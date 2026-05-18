@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Stellar Time - Curso de Gestión</title>
+    <style>
+        body {
+            background-color: #1E1E1E;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: 0; padding: 20px;
+        }
+        nav a { color: #00ff00; text-decoration: none; margin: 0 10px; font-weight: bold; }
+        
+        .ruta-aprendizaje {
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .estacion {
+            background: #2b2b2b;
+            border: 2px solid #444;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .estacion:hover {
+            border-color: gold;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .img-curso {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid #00ff00;
+        }
+
+        .contenido-estacion {
+            text-align: left;
+        }
+
+        .status-badge {
+            background: #00ff00;
+            color: black;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .bloqueado {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        h1 { color: gold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Trayectoria de Aprendizaje</h1>
+        <nav>
+            <a href="main.html">Inicio</a> | <a href="dashboard.html">Panel</a> | <a href="tareas.html">Misiones</a> | <a href="timer.html">Timer</a> | <a href="ajustes.html">ajustes</a>
+        </nav>
+    </header>
+
+    <main class="ruta-aprendizaje">
+        <div class="estacion">
+            <img src="https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=200" class="img-curso" alt="Gestión de tiempo">
+            <div class="contenido-estacion">
+                <span class="status-badge">COMPLETADO</span>
+                <h3>Módulo 1: Fundamentos de Gestión</h3>
+                <p>Aprende las bases de la organización escolar y administración de recursos.</p>
+            </div>
+        </div>
+
+        <div class="estacion">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=200" class="img-curso" alt="Tecnología">
+            <div class="contenido-estacion">
+                <span class="status-badge">EN CURSO</span>
+                <h3>Módulo 2: Herramientas Digitales</h3>
+                <p>Dominio de HTML, CSS y diseño de interfaces para proyectos técnicos.</p>
+            </div>
+        </div>
+
+        <div class="estacion bloqueado">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=200" class="img-curso" alt="Sistemas">
+            <div class="contenido-estacion">
+                <span class="status-badge" style="background: #555;">BLOQUEADO</span>
+                <h3>Módulo 3: Sistemas y Redes</h3>
+                <p>Configuración de servidores y administración de redes locales.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <hr style="border: 0; border-top: 1px solid #444;">
+        <p>Señal stellar Academy &copy; 2026</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Stellar Time - Centro de Ayuda</title>
+    <style>
+        body {
+            background-color: #1E1E1E;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: 0; padding: 20px;
+        }
+        nav a { color: #00ff00; text-decoration: none; margin: 0 10px; font-weight: bold; }
+        
+        .faq-container {
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: #2b2b2b;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            font-weight: bold;
+            color: gold;
+        }
+
+        .faq-question:hover {
+            background: #444;
+            color: #00ff00;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #1e1e1e;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+            border-top: 1px solid #444;
+        }
+
+        h1 { color: gold; margin-bottom: 30px; }
+        .tech-icon { color: #00ff00; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Base de Datos de Inteligencia</h1>
+        <nav>
+            <a href="main.html">Inicio</a> | <a href="dashboard.html">Panel</a> | <a href="blog.html">Blog</a>
+        </nav>
+    </header>
+
+    <main class="faq-container">
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tech-icon">></span> ¿Cómo funciona el temporizador?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Utiliza bloques de 25 minutos de trabajo intenso (Misión) seguidos de 5 minutos de recuperación (Descanso). Este método optimiza la energía de tu "procesador" mental.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tech-icon">></span> ¿Puedo usarlo en Linux?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Afirmativo. El sistema está diseñado en HTML5 y CSS3 estándar, lo que garantiza compatibilidad total con sistemas Debian, Ubuntu y cualquier navegador moderno en Linux.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tech-icon">></span> ¿Dónde se guardan mis tareas?</span>
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Los datos se encriptan localmente en el almacenamiento de tu navegador (LocalStorage). Ningún dato sale de tu terminal privada hacia servidores externos.
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Lógica para el efecto de acordeón
+        const questions = document.querySelectorAll('.faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // Cambiar el signo + por -
+                const icon = question.querySelector('span:last-child');
+                icon.innerText = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+    </script>
+
+    <footer>
+        <hr style="border: 0; border-top: 1px solid #444;">
+        <p>Soporte Técnico Stellar &copy; 2026</p>
+    </footer>
+</body>
+</html>

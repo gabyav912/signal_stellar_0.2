@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Señal-Stellar - Ayuda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .logo {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #b8860b;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .manual-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.6);
+            border-left: 4px solid #d4af37;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .manual-section:hover {
+            background: rgba(30, 30, 50, 0.9);
+            border-left: 4px solid #ffd700;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .section-number {
+            font-size: 24px;
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .section-name {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .toggle-icon {
+            font-size: 20px;
+            color: #d4af37;
+            transition: transform 0.3s ease;
+        }
+
+        .manual-section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            max-height: 500px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .manual-section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .section-content p {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: #d0d0d0;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .section-content li {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 8px;
+            color: #d0d0d0;
+            position: relative;
+        }
+
+        .section-content li:before {
+            content: "•";
+            color: #d4af37;
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+
+        .subtitle-section {
+            font-size: 14px;
+            color: #b8860b;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: #d4af37;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: #000;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #d4af37;
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .manual-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">⭐ SEÑAL-STELLAR</div>
+            <div class="title">SEÑAL-STELLAR</div>
+            <div class="subtitle">ayuda</div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="content">
+            <div class="section-title">Manual de Vuelo Señal-stellar</div>
+            <p style="text-align: center; margin-bottom: 30px; color: #b8860b;">
+                ¡Bienvenido a bordo, Comandante! Esta guía te ayudará a dominar las funciones de tu nave para conquistar tus metas.
+            </p>
+
+            <!-- Sección 1: Centro de Mando (Inicio) -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">1.</span>
+                    <span class="section-name">Centro de Mando (Inicio)</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Es el punto de despegue. Aquí seleccionas la duración de tu próxima Misión de Enfoque. Puedes usar los tiempos predeterminados o los que tú mismo hayas configurado.</p>
+                </div>
+            </div>
+
+            <!-- Sección 2: Laboratorio (Personalización) -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">2.</span>
+                    <span class="section-name">Laboratorio (Personalización)</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Aquí ajustas los sistemas de tu nave a tu gusto:</p>
+                    <ul>
+                        <li><span class="subtitle-section">Cronometría:</span> Cambia la duración de los ciclos Pomodoro y los descansos.</li>
+                        <li><span class="subtitle-section">Estética Visual:</span> Usa el Selector de Colores para cambiar el tono de tus cartas emergentes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sección 3: En Órbita (Misión en Curso) -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">3.</span>
+                    <span class="section-name">En Órbita (Misión en Curso)</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Mientras la temporización corre, estarás "En Órbita". Aquí observarás:</p>
+                    <ul>
+                        <li><span class="subtitle-section">Concentración Total:</span> No cierres la pestaña para no abortar la misión.</li>
+                        <li><span class="subtitle-section">Minimizar:</span> Puedes convertir el reloj en un Cuadal flotante para seguir trabajando en otras webs sin perder de vista el tiempo.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sección 4: Módulo de Descanso -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">4.</span>
+                    <span class="section-name">Módulo de Descanso</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Al terminar una misión, la nave entrará en modo de espera. Es vital que descanses para regenerar energía antes del próximo salto hiperespacial.</p>
+                </div>
+            </div>
+
+            <!-- Sección 5: Bóveda (Sector Explorado) -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">5.</span>
+                    <span class="section-name">Bóveda (Sector Explorado)</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>¡Tu registro de éxitos! Por cada misión de 25 minutos completada con éxito, recibirás una Carta Estelar.</p>
+                    <ul>
+                        <li><span class="subtitle-section">Colecciona:</span> Planetas, lunas y fenómenos espaciales raros.</li>
+                        <li><span class="subtitle-section">Consulta:</span> Tu inventario en la sección de Logros para ver qué rincones del universo has descubierto.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sección 6: Suministros Sonoros (Música) -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">6.</span>
+                    <span class="section-name">Suministros Sonoros (Música)</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Activa las transmisiones de audio para bloquear el ruido del vacío profundo. Elige entre música para concentrarte o ruidos para relajarte durante tus descansos.</p>
+                </div>
+            </div>
+
+            <!-- Sección 7: Tip de Navegación -->
+            <div class="manual-section">
+                <div class="section-header">
+                    <span class="section-number">7.</span>
+                    <span class="section-name">Tip de Navegación</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p>Si la misión incompleta no otorga cartas de recompensa, recuerda: las misiones incompletas no otorgan cartas de recompensa. Cuando quieras salir de una de las opciones previas del icono de "stellar time" presiona el icono para volver al inicio, pero recuerda: las misiones incompletas no otorgan cartas de recompensa.</p>
+                </div>
+            </div>
+
+            <!-- Botones de Navegación -->
+            <div class="button-group">
+                <button class="btn" onclick="expandAll()">Expandir Todo</button>
+                <button class="btn btn-secondary" onclick="collapseAll()">Contraer Todo</button>
+                <button class="btn btn-secondary" onclick="irAlLogin()">Volver al Login</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Señal-Stellar © 2026 - Manual de Vuelo v1.0</p>
+            <p>¡Que tus misiones sean exitosas, Comandante!</p>
+        </div>
+    </div>
+
+    <script>
+        // Obtener todos los manual-section
+        const sections = document.querySelectorAll('.manual-section');
+
+        // Agregar evento click a cada sección
+        sections.forEach(section => {
+            section.classList.add('collapsed');
+            section.addEventListener('click', function() {
+                this.classList.toggle('collapsed');
+            });
+        });
+
+        // Expandir todas las secciones
+        function expandAll() {
+            sections.forEach(section => {
+                section.classList.remove('collapsed');
+            });
+        }
+
+        // Contraer todas las secciones
+        function collapseAll() {
+            sections.forEach(section => {
+                section.classList.add('collapsed');
+            });
+        }
+
+        // Ir al login
+        function irAlLogin() {
+            window.location.href = 'login.html';
+        }
+
+        // Evitar que el click en los botones cierre las secciones
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
