@@ -9,7 +9,7 @@
 body{
 background:#0b0b0b;
 color:white;
-font-family:times new;
+font-family:"Times New Roman",serif;
 margin:0;
 }
 
@@ -21,20 +21,27 @@ padding:20px;
 background:black;
 }
 
-header h1{
+.titulo h1{
 color:#e0b93f;
+margin:0;
+}
+
+.titulo p{
+margin:5px 0 0 0;
+color:white;
 }
 
 .perfil{
 background:white;
-color:red;
-width:35px;
-height:35px;
+color:black;
+width:40px;
+height:40px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
 font-weight:bold;
+font-size:18px;
 }
 
 .contenedor{
@@ -60,6 +67,20 @@ border-radius:4px;
 main{
 flex:1;
 padding:20px;
+}
+
+/* Tarjeta del usuario */
+
+.usuario{
+background:#1a1a1a;
+padding:15px;
+margin-bottom:20px;
+border-radius:5px;
+}
+
+.usuario h2{
+margin-top:0;
+color:#e0b93f;
 }
 
 .panel{
@@ -92,15 +113,6 @@ flex:1;
 text-align:center;
 }
 
-.boton-temporizador{
-margin-top:20px;
-padding:15px;
-background:#27ae60;
-border:none;
-font-size:16px;
-cursor:pointer;
-}
-
 footer{
 margin-top:40px;
 padding:20px;
@@ -122,10 +134,13 @@ text-decoration:none;
 
 <header>
 
+<div class="titulo">
 <h1>SEÑAL-STELLAR</h1>
+<p>Bienvenido, <span id="bienvenido"></span></p>
+</div>
 
 <div class="perfil">
-C
+<span id="iniciales"></span>
 </div>
 
 </header>
@@ -148,6 +163,19 @@ C
 
 <main>
 
+<div class="usuario">
+
+<h2>Mi perfil</h2>
+
+<p><strong>Usuario:</strong> <span id="usuario"></span></p>
+
+<p><strong>Nombre:</strong> <span id="nombre"></span></p>
+
+<p><strong>País:</strong> <span id="pais"></span></p>
+
+</div>
+
+
 <div class="panel">
 
 <div class="logros">
@@ -155,9 +183,9 @@ C
 <h2>Últimos logros</h2>
 
 <ul>
-<li>🏆 Terminaste x temporizadores</li>
-<li>🔥 días de constancia: ...</li>
-<li>⭐ Mejor racha: ...</li>
+<li>🏆 Terminaste 12 temporizadores</li>
+<li>🔥 Días de constancia: 5</li>
+<li>⭐ Mejor racha: 14 días</li>
 </ul>
 
 </div>
@@ -166,9 +194,7 @@ C
 
 <h2>Frase del día</h2>
 
-<p>
-"La disciplina supera a la motivación."
-</p>
+<p>"La disciplina supera a la motivación."</p>
 
 </div>
 
@@ -179,31 +205,29 @@ C
 
 <div class="widget">
 <h3>Racha actual</h3>
-<p>x días</p>
+<p>5 días</p>
 </div>
 
 <div class="widget">
 <h3>Temporizadores hoy</h3>
-<p>x</p>
+<p>3</p>
 </div>
 
 <div class="widget">
 <h3>Tiempo enfocado</h3>
-<p>A h B m</p>
+<p>2 h 35 m</p>
 </div>
 
 <div class="widget">
 <h3>Tareas pendientes</h3>
-<p>x</p>
+<p>4</p>
 </div>
 
 </div>
-
 
 </main>
 
 </div>
-
 
 <footer>
 
@@ -215,5 +239,31 @@ C
 <a href="cv.html">CV</a>
 
 </footer>
+
+<script>
+
+let usuario = localStorage.getItem("usuario");
+let nombre = localStorage.getItem("nombre");
+let apellido = localStorage.getItem("apellido");
+let pais = localStorage.getItem("pais");
+
+if(nombre){
+
+document.getElementById("bienvenido").textContent = nombre;
+
+document.getElementById("usuario").textContent = usuario;
+
+document.getElementById("nombre").textContent = nombre + " " + apellido;
+
+document.getElementById("pais").textContent = pais;
+
+document.getElementById("iniciales").textContent =
+nombre.charAt(0).toUpperCase() +
+apellido.charAt(0).toUpperCase();
+
+}
+
+</script>
+
 </body>
 </html>
