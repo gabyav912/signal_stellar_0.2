@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Señal Stellar</title>
-
+<link rel="icon" type="image/png" href="logo_signal_stellar.png">
 <style>
 
 body{
@@ -242,6 +242,10 @@ text-decoration:none;
 
 <script>
 
+if(localStorage.getItem("usuario") == null){
+    window.location.href = "index.html";
+}
+  
 let usuario = localStorage.getItem("usuario");
 let nombre = localStorage.getItem("nombre");
 let apellido = localStorage.getItem("apellido");
