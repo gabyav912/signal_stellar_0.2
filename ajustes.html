@@ -3,453 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Señal-Stellar - Ajustes</title>
+    <title>Señal Stellar - Ajustes</title>
     <style>
         :root {
-            --bg: #0b0d12;
-            --panel: rgba(16, 18, 25, 0.95);
-            --panel-alt: rgba(25, 27, 35, 0.95);
-            --border: rgba(212, 175, 55, 0.15);
-            --text: #f4f4f4;
-            --subtext: #b8b8c6;
-            --accent: #d4af37;
-            --accent-soft: rgba(212,175,55,0.16);
-            --success: #4ecdc4;
-            --danger: #ef476f;
+            --fondo: #0b0b0b;
+            --panel: #1b1b1b;
+            --panel2: #242424;
+            --borde: #343434;
+            --texto: #ffffff;
+            --texto2: #bdbdbd;
+            --dorado: #d4af37;
+            --verde: #2db35f;
+            --rojo: #d14b4b;
         }
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #080a10 0%, #090c15 50%, #040507 100%);
-            color: var(--text);
-        }
-
-        .app {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 24px;
-            padding: 24px;
-        }
-
-        .sidebar {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .brand-icon {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle at 30% 30%, #f4f4f4 0%, #d4af37 45%, transparent 70%);
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(212,175,55,0.3);
-        }
-
-        .brand-text {
-            font-size: 18px;
-            letter-spacing: 0.12em;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .nav button {
-            text-align: left;
-            background: transparent;
-            border: none;
-            padding: 14px 16px;
-            border-radius: 16px;
-            color: var(--subtext);
-            font-size: 15px;
-            cursor: pointer;
-            transition: background .2s ease, color .2s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav button.active,
-        .nav button:hover {
-            background: rgba(212,175,55,0.12);
-            color: var(--text);
-        }
-
-        .nav button svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--accent);
-        }
-
-        .sidebar .profile {
-            margin-top: auto;
-            padding: 18px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 18px;
-            border: 1px solid rgba(212,175,55,0.12);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .profile-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #2b2f42, #12161f);
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            font-size: 18px;
-            color: var(--text);
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .profile-info strong {
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        .profile-info span {
-            color: var(--subtext);
-            font-size: 12px;
+            background: var(--fondo);
+            font-family: "Times New Roman", serif;
+            color: var(--texto);
+            padding: 30px;
         }
 
         .main {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 32px;
+            max-width: 1150px;
+            margin: auto;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 25px;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 18px;
-            flex-wrap: wrap;
+        h1 {
+            color: var(--dorado);
+            font-size: 38px;
+            margin-bottom: 5px;
         }
 
-        .section-header h1 {
-            font-size: 32px;
-            margin: 0;
-            color: var(--text);
-        }
-
-        .section-header p {
-            margin: 0;
-            color: var(--subtext);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
+        .descripcion {
+            color: var(--texto2);
+            font-size: 18px;
+            margin-bottom: 10px;
         }
 
         .panel {
-            background: var(--panel-alt);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 24px;
+            background: var(--panel);
+            border: 1px solid var(--borde);
+            border-radius: 15px;
+            padding: 25px;
         }
 
-        .panel-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 18px;
+        .panel h2 {
+            color: var(--dorado);
+            font-size: 27px;
+            margin-bottom: 20px;
         }
 
-        .panel-row {
+        .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
-            margin-bottom: 18px;
+            gap: 25px;
         }
 
-        .field {
+        .campo {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .field label {
-            color: var(--subtext);
-            font-size: 13px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .field input[type="number"],
-        .field select,
-        .field input[type="text"] {
-            width: 100%;
-            border-radius: 14px;
-            border: 1px solid rgba(212,175,55,0.18);
-            background: rgba(255,255,255,0.04);
-            color: var(--text);
-            padding: 12px 14px;
-            font-size: 15px;
-        }
-
-        .field input[type="range"] {
-            width: 100%;
-        }
-
-        .field input[type="color"] {
-            width: 72px;
-            height: 42px;
-            border-radius: 12px;
-            border: 1px solid rgba(212,175,55,0.18);
-            padding: 0;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .side-by-side {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .side-by-side span {
-            color: var(--text);
-            font-weight: 700;
-            min-width: 50px;
-            text-align: right;
-        }
-
-        .toggle-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(212,175,55,0.16);
-            background: rgba(255,255,255,0.04);
-        }
-
-        .toggle-label {
-            color: var(--text);
-            font-size: 15px;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 46px;
-            height: 26px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background: rgba(255,255,255,0.12);
-            border-radius: 999px;
-            transition: background .2s ease;
-        }
-
-        .toggle-slider:before {
-            content: "";
-            position: absolute;
-            left: 4px;
-            top: 4px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #fff;
-            transition: transform .2s ease;
-        }
-
-        .toggle-switch input:checked + .toggle-slider {
-            background: var(--accent);
-        }
-
-        .toggle-switch input:checked + .toggle-slider:before {
-            transform: translateX(20px);
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 8px;
-        }
-
-        .button-group button {
-            border: 1px solid rgba(212,175,55,0.2);
-            background: rgba(255,255,255,0.05);
-            color: var(--text);
-            padding: 14px 18px;
-            border-radius: 14px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all .2s ease;
-        }
-
-        .button-group button.active,
-        .button-group button:hover {
-            border-color: var(--accent);
-            background: rgba(212,175,55,0.18);
-            color: var(--text);
-        }
-
-        .button-group button.primary {
-            background: linear-gradient(135deg, #d4af37, #ffd700);
-            color: #111;
-            border-color: transparent;
-        }
-
-        .button-group button.primary:hover {
-            transform: translateY(-2px);
-        }
-
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .actions button {
-            flex: 1;
-            padding: 16px 20px;
-            border-radius: 16px;
-            border: none;
-            color: #111;
-            font-weight: 800;
-            cursor: pointer;
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-        .actions button.save {
-            background: #16a34a;
-            box-shadow: 0 12px 24px rgba(22,163,74,0.22);
-        }
-
-        .actions button.reset {
-            background: #f43f5e;
-            box-shadow: 0 12px 24px rgba(244,63,94,0.22);
-        }
-
-        .actions button:hover {
-            transform: translateY(-2px);
-        }
-
-        .preview-box {
-            border-radius: 18px;
-            border: 1px solid rgba(212,175,55,0.15);
-            overflow: hidden;
-            background: rgba(255,255,255,0.04);
-        }
-
-        .preview-header {
-            padding: 18px 22px;
-            border-bottom: 1px solid rgba(212,175,55,0.12);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .preview-header span {
-            font-size: 13px;
-            color: var(--subtext);
-        }
-
-        .preview-body {
-            padding: 22px;
-            display: grid;
-            gap: 18px;
-        }
-
-        .preview-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        .preview-card {
-            flex: 1;
-            min-width: 180px;
-            border-radius: 18px;
-            background: rgba(0,0,0,0.18);
-            padding: 18px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .preview-card strong {
-            display: block;
-            color: var(--accent);
+        label {
             margin-bottom: 8px;
+            font-size: 17px;
+            color: var(--texto2);
         }
 
-        .preview-colors {
+        input[type="color"] {
+            width: 80px;
+            height: 45px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        select {
+            background: #101010;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .valorVolumen {
+            margin-top: 8px;
+            font-size: 16px;
+            color: var(--texto2);
+        }
+
+        .switch {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .switch span {
+            font-size: 17px;
+        }
+
+        input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .botonesTema {
             display: flex;
             gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
-        .preview-colors div {
-            flex: 1;
-            border-radius: 14px;
-            min-height: 52px;
-            display: grid;
-            place-items: center;
-            color: #111;
-            font-weight: 700;
+        .botonesTema button {
+            padding: 12px 20px;
+            background: #303030;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: .2s;
         }
 
-        .preview-loader {
-            height: 120px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 18px;
-            border: 1px dashed rgba(212,175,55,0.2);
-            display: grid;
-            place-items: center;
-            color: var(--subtext);
+        .botonesTema button:hover {
+            background: #444;
         }
 
-        @media (max-width: 950px) {
-            .app {
-                grid-template-columns: 1fr;
-            }
+        .botonesTema button.activo {
+            background: var(--dorado);
+            color: black;
+            font-weight: bold;
+        }
 
+        .acciones {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .acciones button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .guardar {
+            background: var(--verde);
+            color: white;
+        }
+
+        .reiniciar {
+            background: var(--rojo);
+            color: white;
+        }
+
+        @media(max-width:850px) {
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -457,419 +190,334 @@
     </style>
 </head>
 <body>
-    <div class="app">
-        <aside class="sidebar">
-            <div class="brand">
-                <div class="brand-icon"></div>
-                <div class="brand-text">SEÑAL-STELLAR</div>
-            </div>
-            <nav class="nav">
-                <button><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> Inicio</button>
-                <button><svg viewBox="0 0 24 24"><path d="M12 5V1L8 5l4 4V6c3.3 0 6 2.7 6 6 0 1.1-.3 2.1-.9 3l1.4 1.4C19.5 15.9 20 14.5 20 13c0-4.4-3.6-8-8-8zM6 13c0 4.4 3.6 8 8 8v4l4-4-4-4v3c-3.3 0-6-2.7-6-6 0-1.1.3-2.1.9-3L5.5 7.6C4.5 8.9 4 10.5 4 12z"/></svg> Temporizador</button>
-                <button><svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg> Música</button>
-                <button><svg viewBox="0 0 24 24"><path d="M12 2L2 7v7c0 5 3.8 9.7 10 13 6.2-3.3 10-8 10-13V7l-10-5zm0 18c-3.8-2.1-6-5.9-6-9.8V9.6l6-3v13.4z"/></svg> Progreso</button>
-                <button><svg viewBox="0 0 24 24"><path d="M12 7a2 2 0 0 0-2 2v5H8v2h8v-2h-2V9a2 2 0 0 0-2-2zm0-5c-4.4 0-8 3.6-8 8 0 1.1.3 2.1.9 3L2 18l3-2c1.1.6 2.3 1 3.5 1 4.4 0 8-3.6 8-8S16.4 2 12 2z"/></svg> Logros</button>
-                <button class="active"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm-1 14.93A7.002 7.002 0 0 1 5.07 13H7a1 1 0 0 0 0-2H4a1 1 0 0 0-1 1v3a1 1 0 0 0 2 0v-1.5A8.025 8.025 0 0 0 11 20a7.947 7.947 0 0 0 6.84-4.1A7.965 7.965 0 0 1 11 16.93zM13 7h-2V5h2zm0 4h-2V9h2z"/></svg> Ajustes</button>
-                <button><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.48 2 12s4.5 10 10 10 10-4.48 10-10S17.5 2 12 2zm1 14.5h-2V13H8v-2h3V7.5h2V11h3v2h-3v3.5z"/></svg> Ayuda</button>
-            </nav>
-            <div class="profile">
-                <div class="profile-icon">E</div>
-                <div class="profile-info">
-                    <strong>Estudiante</strong>
-                    <span>Nivel 4</span>
-                </div>
-            </div>
-        </aside>
 
-        <main class="main">
-            <div class="section-header">
-                <div>
-                    <h1>Ajustes</h1>
-                    <p>Personaliza tu experiencia para que se adapte a tu forma de trabajar.</p>
-                </div>
-                <div class="actions">
-                    <button class="reset" onclick="restablecerConfiguracion()">Restablecer configuración</button>
-                    <button class="save" onclick="guardarConfiguracion()">Guardar cambios</button>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="panel">
-                    <div class="panel-title">Colores del temporizador</div>
-                    <div class="panel-row">
-                        <div class="field">
-                            <label for="color-accion">Color del cartel de "acción"</label>
-                            <input type="color" id="color-accion" value="#ff3b30">
-                        </div>
-                        <div class="field">
-                            <label for="color-break">Color del cartel de "break"</label>
-                            <input type="color" id="color-break" value="#00c853">
-                        </div>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-title">Tiempos</div>
-                    <div class="panel-row">
-                        <div class="field">
-                            <label for="tiempo-break">Tiempo del break</label>
-                            <select id="tiempo-break"></select>
-                        </div>
-                        <div class="field">
-                            <label for="tiempo-pomodoro">Tiempo del pomodoro</label>
-                            <select id="tiempo-pomodoro"></select>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="tiempo-descanso">Tiempo de descanso</label>
-                        <select id="tiempo-descanso"></select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="panel">
-                    <div class="panel-title">Sonido de alarma</div>
-                    <div class="field">
-                        <label for="sonido-alarma">Sonido</label>
-                        <select id="sonido-alarma"></select>
-                    </div>
-                    <div class="field">
-                        <label for="volumen-alarma">Volumen</label>
-                        <div class="side-by-side">
-                            <input type="range" id="volumen-alarma" min="0" max="100" value="80">
-                            <span id="volumen-valor">80%</span>
-                        </div>
-                    </div>
-                    <div class="toggle-card">
-                        <span class="toggle-label">Activar sonido</span>
-                        <label class="toggle-switch">
-                            <input id="activar-sonido" type="checkbox" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-title">Notificaciones</div>
-                    <div class="toggle-card">
-                        <span class="toggle-label">Mostrar notificación al terminar</span>
-                        <label class="toggle-switch">
-                            <input id="mostrar-notificacion" type="checkbox" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="panel-title" style="margin-top: 24px;">Música</div>
-                    <div class="toggle-card">
-                        <span class="toggle-label">Reproducir música durante el temporizador</span>
-                        <label class="toggle-switch">
-                            <input id="musica-temporizador" type="checkbox" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="toggle-card" style="margin-top: 16px;">
-                        <span class="toggle-label">Reproducir música durante el break</span>
-                        <label class="toggle-switch">
-                            <input id="musica-break" type="checkbox" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="panel">
-                    <div class="panel-title">Apariencia</div>
-                    <div class="field">
-                        <label>Tema de la aplicación</label>
-                        <div class="button-group" id="tema-group">
-                            <button type="button" data-value="oscuro">Oscuro</button>
-                            <button type="button" data-value="claro">Claro</button>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Imagen de fondo</label>
-                        <button class="btn-secondary" onclick="document.getElementById('fondo-archivo').click()">Seleccionar imagen</button>
-                        <input hidden type="file" id="fondo-archivo" accept="image/*">
-                        <p class="help-text" id="fondo-info">No hay imagen seleccionada</p>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-title">Otros</div>
-                    <div class="field">
-                        <label>Estilo del temporizador</label>
-                        <div class="button-group" id="estilo-group">
-                            <button type="button" data-value="circular">Circular</button>
-                            <button type="button" data-value="barra">Barra</button>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Mostrar vista previa</label>
-                        <div class="preview-box">
-                            <div class="preview-header">
-                                <span>Previsualiza colores y tema</span>
-                            </div>
-                            <div class="preview-body">
-                                <div class="preview-row">
-                                    <div class="preview-card">
-                                        <strong>Acción</strong>
-                                        <div class="preview-colors">
-                                            <div id="preview-accion" style="background:#ff3b30;">ACCIÓN</div>
-                                        </div>
-                                    </div>
-                                    <div class="preview-card">
-                                        <strong>Break</strong>
-                                        <div class="preview-colors">
-                                            <div id="preview-break" style="background:#00c853;">BREAK</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="preview-row">
-                                    <div class="preview-loader" id="preview-background">Fondo actual: ninguno</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+<div class="main">
+    <div>
+        <h1>Ajustes</h1>
+        <p class="descripcion">Personaliza Señal Stellar a tu gusto.</p>
     </div>
 
-    <script>
-        const defaultConfig = {
-            colorAccion: '#FF3B30',
-            colorBreak: '#00C853',
-            tiempoBreak: '5',
-            tiempoPomodoro: '25',
-            tiempoDescanso: '15',
-            sonidoAlarma: 'campana',
-            volumenAlarma: 80,
-            activarSonido: true,
-            mostrarNotificacion: true,
-            musicaTemporizador: true,
-            musicaBreak: true,
-            tema: 'oscuro',
-            estiloTemporizador: 'circular',
-            fondoImagen: ''
+    <div class="acciones">
+        <button class="reiniciar" onclick="restablecerConfiguracion()">Restablecer configuración</button>
+        <button class="guardar" onclick="guardarConfiguracion()">Guardar cambios</button>
+    </div>
+
+    <div class="grid">
+        <!-- PANEL: COLORES -->
+        <div class="panel">
+            <h2>Colores del temporizador</h2>
+            <div class="campo">
+                <label>Color del cartel "Acción"</label>
+                <input type="color" id="color-accion" value="#ff3b30">
+            </div>
+            <div class="campo">
+                <label>Color del cartel "Break"</label>
+                <input type="color" id="color-break" value="#00c853">
+            </div>
+        </div>
+
+        <!-- PANEL: TIEMPOS -->
+        <div class="panel">
+            <h2>Tiempos</h2>
+            <div class="campo">
+                <label>Tiempo Pomodoro</label>
+                <select id="tiempo-pomodoro"></select>
+            </div>
+            <div class="campo">
+                <label>Tiempo Break</label>
+                <select id="tiempo-break"></select>
+            </div>
+            <div class="campo">
+                <label>Tiempo Descanso</label>
+                <select id="tiempo-descanso"></select>
+            </div>
+            <div class="campo">
+                <label>Cantidad de Pomodoros (Repeticiones)</label>
+                <select id="repeticiones-pomodoro">
+                    <option value="2">2 Pomodoros</option>
+                    <option value="3">3 Pomodoros</option>
+                    <option value="4">4 Pomodoros (Recomendado)</option>
+                    <option value="5">5 Pomodoros</option>
+                    <option value="6">6 Pomodoros</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- PANEL: SONIDO -->
+        <div class="panel">
+            <h2>Sonido</h2>
+            <div class="campo">
+                <label>Sonido de la alarma</label>
+                <select id="sonido-alarma"></select>
+            </div>
+            <div class="campo">
+                <label>Volumen</label>
+                <input type="range" id="volumen-alarma" min="0" max="100" value="80">
+                <div class="valorVolumen" id="volumen-valor">80%</div>
+            </div>
+            <div class="switch">
+                <span>Activar sonido</span>
+                <input type="checkbox" id="activar-sonido" checked>
+            </div>
+        </div>
+
+        <!-- PANEL: NOTIFICACIONES -->
+        <div class="panel">
+            <h2>Notificaciones</h2>
+            <div class="switch">
+                <span>Mostrar notificación al finalizar</span>
+                <input type="checkbox" id="mostrar-notificacion" checked>
+            </div>
+            <div class="switch">
+                <span>Reproducir música durante Pomodoro</span>
+                <input type="checkbox" id="musica-temporizador" checked>
+            </div>
+            <div class="switch">
+                <span>Reproducir música durante Break</span>
+                <input type="checkbox" id="musica-break" checked>
+            </div>
+        </div>
+
+        <!-- PANEL: APARIENCIA -->
+        <div class="panel">
+            <h2>Apariencia</h2>
+            <div class="campo">
+                <label>Tema de la aplicación</label>
+                <div class="botonesTema" id="tema-group">
+                    <button type="button" data-value="oscuro">Oscuro</button>
+                    <button type="button" data-value="claro">Claro</button>
+                </div>
+            </div>
+            <div class="campo">
+                <label>Estilo del temporizador</label>
+                <div class="botonesTema" id="estilo-group">
+                    <button type="button" data-value="circular">Circular</button>
+                    <button type="button" data-value="barra">Barra</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL: VISTA PREVIA -->
+        <div class="panel">
+            <h2>Vista previa</h2>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:220px; background:#111; border-radius:12px; padding:20px; text-align:center; border:1px solid #333;">
+                    <h3 style="margin-bottom:15px; color:#d4af37;">Acción</h3>
+                    <div id="preview-accion" style="height:70px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; background:#ff3b30;">
+                        ACCIÓN
+                    </div>
+                </div>
+                <div style="flex:1; min-width:220px; background:#111; border-radius:12px; padding:20px; text-align:center; border:1px solid #333;">
+                    <h3 style="margin-bottom:15px; color:#d4af37;">Break</h3>
+                    <div id="preview-break" style="height:70px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; background:#00c853;">
+                        BREAK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const defaultConfig = {
+        colorAccion: "#ff3b30",
+        colorBreak: "#00c853",
+        tiempoPomodoro: "25",
+        tiempoBreak: "5",
+        tiempoDescanso: "15",
+        repeticionesPomodoro: "4",
+        sonidoAlarma: "ascensor.ogg",
+        volumenAlarma: 80,
+        activarSonido: true,
+        mostrarNotificacion: true,
+        musicaTemporizador: true,
+        musicaBreak: true,
+        tema: "oscuro",
+        estiloTemporizador: "circular"
+    };
+
+    const configKey = "senalStellarAjustes";
+    let config = loadConfig();
+
+    // Elementos del DOM
+    const tiempoPomodoro = document.getElementById("tiempo-pomodoro");
+    const tiempoBreak = document.getElementById("tiempo-break");
+    const tiempoDescanso = document.getElementById("tiempo-descanso");
+    const repeticionesPomodoro = document.getElementById("repeticiones-pomodoro");
+    const sonidoAlarma = document.getElementById("sonido-alarma");
+    const volumen = document.getElementById("volumen-alarma");
+    const volumenValor = document.getElementById("volumen-valor");
+    const colorAccion = document.getElementById("color-accion");
+    const colorBreak = document.getElementById("color-break");
+    const previewAccion = document.getElementById("preview-accion");
+    const previewBreak = document.getElementById("preview-break");
+
+    const tiempos = [
+        ["3", "3 minutos"], ["5", "5 minutos"], ["10", "10 minutos"],
+        ["15", "15 minutos"], ["20", "20 minutos"], ["25", "25 minutos"],
+        ["30", "30 minutos"], ["35", "35 minutos"], ["40", "40 minutos"],
+        ["45", "45 minutos"], ["50", "50 minutos"], ["60", "60 minutos"]
+    ];
+
+    const sonidos = [
+        ["ascensor.ogg", "Ascensor"], ["cheked.ogg", "Checked"],
+        ["cristal.ogg", "Cristal"], ["elegante.ogg", "Elegante"],
+        ["error.ogg", "Error"], ["future.ogg", "Future"],
+        ["soft.ogg", "Soft"], ["stellar.ogg", "Stellar"],
+        ["the_space.ogg", "The Space"]
+    ];
+
+    function cargarSelect(select, datos) {
+        select.innerHTML = "";
+        datos.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item[0];
+            option.textContent = item[1];
+            select.appendChild(option);
+        });
+    }
+
+    // Inicializar Selects
+    cargarSelect(tiempoPomodoro, tiempos);
+    cargarSelect(tiempoBreak, tiempos);
+    cargarSelect(tiempoDescanso, tiempos);
+    cargarSelect(sonidoAlarma, sonidos);
+
+    // Cargar valores de la configuración al DOM
+    colorAccion.value = config.colorAccion;
+    colorBreak.value = config.colorBreak;
+    tiempoPomodoro.value = config.tiempoPomodoro;
+    tiempoBreak.value = config.tiempoBreak;
+    tiempoDescanso.value = config.tiempoDescanso;
+    repeticionesPomodoro.value = config.repeticionesPomodoro;
+    sonidoAlarma.value = config.sonidoAlarma;
+    volumen.value = config.volumenAlarma;
+    volumenValor.textContent = config.volumenAlarma + "%";
+    
+    document.getElementById("activar-sonido").checked = config.activarSonido;
+    document.getElementById("mostrar-notificacion").checked = config.mostrarNotificacion;
+    document.getElementById("musica-temporizador").checked = config.musicaTemporizador;
+    document.getElementById("musica-break").checked = config.musicaBreak;
+
+    actualizarVista();
+    aplicarTema();
+
+    // Event Listeners
+    colorAccion.addEventListener("input", actualizarVista);
+    colorBreak.addEventListener("input", actualizarVista);
+    volumen.addEventListener("input", function() {
+        volumenValor.textContent = this.value + "%";
+    });
+
+    document.querySelectorAll("#tema-group button").forEach(function(btn) {
+        btn.onclick = function() {
+            document.querySelectorAll("#tema-group button").forEach(b => b.classList.remove("activo"));
+            btn.classList.add("activo");
+            config.tema = btn.dataset.value;
+            aplicarTema();
         };
+    });
 
-        const configKey = 'senalStellarAjustes';
-        const config = loadConfig();
-        const tiempoBreakEl = document.getElementById('tiempo-break');
-        const tiempoPomodoroEl = document.getElementById('tiempo-pomodoro');
-        const tiempoDescansoEl = document.getElementById('tiempo-descanso');
-        const sonidoAlarmaEl = document.getElementById('sonido-alarma');
-        const volumenAlarmaEl = document.getElementById('volumen-alarma');
-        const volumenValorEl = document.getElementById('volumen-valor');
-        const fondoArchivoEl = document.getElementById('fondo-archivo');
-        const fondoInfoEl = document.getElementById('fondo-info');
-        const previewAccionEl = document.getElementById('preview-accion');
-        const previewBreakEl = document.getElementById('preview-break');
-        const previewBackgroundEl = document.getElementById('preview-background');
+    document.querySelectorAll("#estilo-group button").forEach(function(btn) {
+        btn.onclick = function() {
+            document.querySelectorAll("#estilo-group button").forEach(b => b.classList.remove("activo"));
+            btn.classList.add("activo");
+            config.estiloTemporizador = btn.dataset.value;
+        };
+    });
 
-        const tiempoOptions = [
-            { value: '3', label: '3:00' },
-            { value: '5', label: '5:00' },
-            { value: '10', label: '10:00' },
-            { value: '15', label: '15:00' },
-            { value: '20', label: '20:00' },
-            { value: '25', label: '25:00' }
-        ];
+    function actualizarVista() {
+        previewAccion.style.background = colorAccion.value;
+        previewBreak.style.background = colorBreak.value;
+    }
 
-        const sonidos = [
-            { value: 'campana', label: 'Campana clásica' },
-            { value: 'pitido', label: 'Pitido breve' },
-            { value: 'alarma', label: 'Alarma suave' }
-        ];
-
-        function populateSelect(select, options) {
-            select.innerHTML = options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('');
+    function aplicarTema() {
+        if (config.tema === "claro") {
+            document.body.style.background = "#efefef";
+            document.body.style.color = "#111";
+            document.documentElement.style.setProperty("--fondo", "#efefef");
+            document.documentElement.style.setProperty("--panel", "#ffffff");
+            document.documentElement.style.setProperty("--panel2", "#f4f4f4");
+            document.documentElement.style.setProperty("--texto", "#111111");
+            document.documentElement.style.setProperty("--texto2", "#555555");
+        } else {
+            document.documentElement.style.setProperty("--fondo", "#0b0b0b");
+            document.documentElement.style.setProperty("--panel", "#1b1b1b");
+            document.documentElement.style.setProperty("--panel2", "#242424");
+            document.documentElement.style.setProperty("--texto", "#ffffff");
+            document.documentElement.style.setProperty("--texto2", "#bdbdbd");
+            document.body.style.background = "#0b0b0b";
+            document.body.style.color = "#ffffff";
         }
 
-        populateSelect(tiempoBreakEl, tiempoOptions);
-        populateSelect(tiempoPomodoroEl, tiempoOptions);
-        populateSelect(tiempoDescansoEl, tiempoOptions);
-        populateSelect(sonidoAlarmaEl, sonidos);
-
-        document.getElementById('color-accion').value = config.colorAccion;
-        document.getElementById('color-break').value = config.colorBreak;
-        tiempoBreakEl.value = config.tiempoBreak;
-        tiempoPomodoroEl.value = config.tiempoPomodoro;
-        tiempoDescansoEl.value = config.tiempoDescanso;
-        sonidoAlarmaEl.value = config.sonidoAlarma;
-        volumenAlarmaEl.value = config.volumenAlarma;
-        volumenValorEl.textContent = `${config.volumenAlarma}%`;
-        document.getElementById('activar-sonido').checked = config.activarSonido;
-        document.getElementById('mostrar-notificacion').checked = config.mostrarNotificacion;
-        document.getElementById('musica-temporizador').checked = config.musicaTemporizador;
-        document.getElementById('musica-break').checked = config.musicaBreak;
-        applyTheme(config.tema);
-        applyTimerStyle(config.estiloTemporizador);
-        setBackgroundPreview(config.fondoImagen);
-
-        document.getElementById('color-accion').addEventListener('input', updatePreviewColors);
-        document.getElementById('color-break').addEventListener('input', updatePreviewColors);
-        volumenAlarmaEl.addEventListener('input', () => {
-            volumenValorEl.textContent = `${volumenAlarmaEl.value}%`;
-        });
-        fondoArchivoEl.addEventListener('change', handleBackgroundImage);
-
-        document.querySelectorAll('#tema-group button').forEach(button => {
-            button.addEventListener('click', () => {
-                setActiveButton('tema-group', button);
-                applyTheme(button.dataset.value);
-            });
+        document.querySelectorAll("#tema-group button").forEach(btn => {
+            btn.classList.remove("activo");
+            if (btn.dataset.value === config.tema) btn.classList.add("activo");
         });
 
-        document.querySelectorAll('#estilo-group button').forEach(button => {
-            button.addEventListener('click', () => {
-                setActiveButton('estilo-group', button);
-                applyTimerStyle(button.dataset.value);
-            });
+        document.querySelectorAll("#estilo-group button").forEach(btn => {
+            btn.classList.remove("activo");
+            if (btn.dataset.value === config.estiloTemporizador) btn.classList.add("activo");
         });
+    }
 
-        updatePreviewColors();
+    function guardarConfiguracion() {
+        config.colorAccion = colorAccion.value;
+        config.colorBreak = colorBreak.value;
+        config.tiempoPomodoro = tiempoPomodoro.value;
+        config.tiempoBreak = tiempoBreak.value;
+        config.tiempoDescanso = tiempoDescanso.value;
+        config.repeticionesPomodoro = repeticionesPomodoro.value;
+        config.sonidoAlarma = sonidoAlarma.value;
+        config.volumenAlarma = Number(volumen.value);
+        config.activarSonido = document.getElementById("activar-sonido").checked;
+        config.mostrarNotificacion = document.getElementById("mostrar-notificacion").checked;
+        config.musicaTemporizador = document.getElementById("musica-temporizador").checked;
+        config.musicaBreak = document.getElementById("musica-break").checked;
 
-        function setActiveButton(groupId, activeButton) {
-            document.querySelectorAll(`#${groupId} button`).forEach(btn => btn.classList.remove('active'));
-            activeButton.classList.add('active');
-        }
+        localStorage.setItem(configKey, JSON.stringify(config));
+        showToast("Configuración guardada correctamente.");
+    }
 
-        function updatePreviewColors() {
-            previewAccionEl.style.background = document.getElementById('color-accion').value;
-            previewBreakEl.style.background = document.getElementById('color-break').value;
-        }
+    function restablecerConfiguracion() {
+        if (!confirm("¿Desea restablecer la configuración?")) return;
+        localStorage.removeItem(configKey);
+        config = { ...defaultConfig };
+        location.reload();
+    }
 
-        function applyTheme(theme) {
-            if (theme === 'claro') {
-                document.documentElement.style.setProperty('--bg', '#f7f7f7');
-                document.documentElement.style.setProperty('--panel', 'rgba(255,255,255,0.96)');
-                document.documentElement.style.setProperty('--panel-alt', 'rgba(245,245,245,0.96)');
-                document.documentElement.style.setProperty('--text', '#111111');
-                document.documentElement.style.setProperty('--subtext', '#5c5c6a');
-            } else {
-                document.documentElement.style.setProperty('--bg', '#0b0d12');
-                document.documentElement.style.setProperty('--panel', 'rgba(16, 18, 25, 0.95)');
-                document.documentElement.style.setProperty('--panel-alt', 'rgba(25, 27, 35, 0.95)');
-                document.documentElement.style.setProperty('--text', '#f4f4f4');
-                document.documentElement.style.setProperty('--subtext', '#b8b8c6');
-            }
-            config.tema = theme;
-            setActiveButton('tema-group', document.querySelector(`#tema-group button[data-value="${theme}"]`));
-            document.body.style.background = theme === 'claro'
-                ? 'linear-gradient(180deg, #f4f4f8 0%, #d8d8dc 100%)'
-                : 'linear-gradient(180deg, #080a10 0%, #090c15 50%, #040507 100%)';
-        }
-
-        function applyTimerStyle(style) {
-            config.estiloTemporizador = style;
-            setActiveButton('estilo-group', document.querySelector(`#estilo-group button[data-value="${style}"]`));
-        }
-
-        function handleBackgroundImage() {
-            const file = fondoArchivoEl.files[0];
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                alert('Selecciona una imagen válida.');
-                fondoArchivoEl.value = '';
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = () => {
-                const dataUrl = reader.result;
-                config.fondoImagen = dataUrl;
-                setBackgroundPreview(dataUrl);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function setBackgroundPreview(dataUrl) {
-            if (dataUrl) {
-                previewBackgroundEl.textContent = 'Fondo seleccionado';
-                previewBackgroundEl.style.backgroundImage = `url(${dataUrl})`;
-                previewBackgroundEl.style.backgroundSize = 'cover';
-                previewBackgroundEl.style.backgroundPosition = 'center';
-                previewBackgroundEl.style.color = '#111';
-                previewBackgroundEl.style.borderColor = 'rgba(212,175,55,0.35)';
-                fondoInfoEl.textContent = 'Imagen cargada';
-                fondoInfoEl.style.color = '#9acd32';
-            } else {
-                previewBackgroundEl.textContent = 'Fondo actual: ninguno';
-                previewBackgroundEl.style.backgroundImage = 'none';
-                previewBackgroundEl.style.color = '';
-                previewBackgroundEl.style.borderColor = 'rgba(212,175,55,0.2)';
-                fondoInfoEl.textContent = 'No hay imagen seleccionada';
-                fondoInfoEl.style.color = '';
-            }
-        }
-
-        function guardarConfiguracion() {
-            const datos = {
-                ...config,
-                colorAccion: document.getElementById('color-accion').value,
-                colorBreak: document.getElementById('color-break').value,
-                tiempoBreak: tiempoBreakEl.value,
-                tiempoPomodoro: tiempoPomodoroEl.value,
-                tiempoDescanso: tiempoDescansoEl.value,
-                sonidoAlarma: sonidoAlarmaEl.value,
-                volumenAlarma: Number(volumenAlarmaEl.value),
-                activarSonido: document.getElementById('activar-sonido').checked,
-                mostrarNotificacion: document.getElementById('mostrar-notificacion').checked,
-                musicaTemporizador: document.getElementById('musica-temporizador').checked,
-                musicaBreak: document.getElementById('musica-break').checked,
-                tema: config.tema,
-                estiloTemporizador: config.estiloTemporizador,
-                fondoImagen: config.fondoImagen
-            };
-            localStorage.setItem(configKey, JSON.stringify(datos));
-            showToast('Configuración guardada correctamente.', 'success');
-        }
-
-        function restablecerConfiguracion() {
-            if (!confirm('¿Deseas restablecer los valores predeterminados?')) return;
-            localStorage.removeItem(configKey);
-            Object.assign(config, defaultConfig);
-            document.getElementById('color-accion').value = config.colorAccion;
-            document.getElementById('color-break').value = config.colorBreak;
-            tiempoBreakEl.value = config.tiempoBreak;
-            tiempoPomodoroEl.value = config.tiempoPomodoro;
-            tiempoDescansoEl.value = config.tiempoDescanso;
-            sonidoAlarmaEl.value = config.sonidoAlarma;
-            volumenAlarmaEl.value = config.volumenAlarma;
-            volumenValorEl.textContent = `${config.volumenAlarma}%`;
-            document.getElementById('activar-sonido').checked = config.activarSonido;
-            document.getElementById('mostrar-notificacion').checked = config.mostrarNotificacion;
-            document.getElementById('musica-temporizador').checked = config.musicaTemporizador;
-            document.getElementById('musica-break').checked = config.musicaBreak;
-            applyTheme(config.tema);
-            applyTimerStyle(config.estiloTemporizador);
-            setBackgroundPreview(config.fondoImagen);
-            showToast('Configuración restablecida.', 'success');
-        }
-
-        function loadConfig() {
-            const saved = localStorage.getItem(configKey);
-            if (!saved) return { ...defaultConfig };
+    function loadConfig() {
+        const datos = localStorage.getItem(configKey);
+        if (datos) {
             try {
-                return { ...defaultConfig, ...JSON.parse(saved) };
-            } catch {
+                return { ...defaultConfig, ...JSON.parse(datos) };
+            } catch (e) {
                 return { ...defaultConfig };
             }
         }
+        return { ...defaultConfig };
+    }
 
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.position = 'fixed';
-            toast.style.bottom = '24px';
-            toast.style.right = '24px';
-            toast.style.padding = '14px 18px';
-            toast.style.borderRadius = '16px';
-            toast.style.background = type === 'success' ? '#16a34a' : '#ef476f';
-            toast.style.color = '#fff';
-            toast.style.boxShadow = '0 16px 40px rgba(0,0,0,0.25)';
-            toast.style.zIndex = '1000';
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2800);
-        }
-    </script>
+    function showToast(texto) {
+        const aviso = document.createElement("div");
+        aviso.innerHTML = texto;
+        aviso.style.position = "fixed";
+        aviso.style.right = "25px";
+        aviso.style.bottom = "25px";
+        aviso.style.background = "#2db35f";
+        aviso.style.color = "white";
+        aviso.style.padding = "15px 22px";
+        aviso.style.borderRadius = "10px";
+        aviso.style.fontSize = "16px";
+        aviso.style.boxShadow = "0 0 15px rgba(0,0,0,.4)";
+        aviso.style.zIndex = "9999";
+        document.body.appendChild(aviso);
+
+        setTimeout(function() {
+            aviso.remove();
+        }, 2500);
+    }
+</script>
+
 </body>
 </html>
