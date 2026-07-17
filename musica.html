@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Señal Stellar - Música</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080808;
+    font-family: "Times New Roman", serif;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+}
+
+header h1 {
+    font-size: 58px;
+    color: #d7b447;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+main {
+    width: 95%;
+    margin: auto;
+    padding: 25px;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: normal;
+    margin-bottom: 35px;
+}
+
+.contenedor-principal {
+    display: flex;
+    justify-content: space-between;
+    gap: 45px;
+    align-items: flex-start;
+}
+
+.panel-musica {
+    width: 48%;
+}
+
+.panel-musica h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.lista-musica {
+    background: #d5d5d5;
+    height: 380px;
+    overflow-y: auto;
+    border: 4px solid #666;
+    padding: 12px;
+}
+
+.item-musica {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.item-musica:hover {
+    background: #ececec;
+}
+
+.item-musica.seleccionado {
+    background: #9be0ff;
+}
+
+.numero {
+    width: 28px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.play {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    background: #18d65f;
+    color: black;
+    font-weight: bold;
+}
+
+.play:hover {
+    background: #00ff80;
+}
+
+.nombre {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 18px;
+}
+
+.botones-panel {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.botones-panel button {
+    width: 130px;
+    height: 42px;
+    font-size: 18px;
+    background: #18d65f;
+    border: 2px solid black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.botones-panel button:hover {
+    background: #00ff80;
+}
+
+.panel-opciones {
+    margin-top: 45px;
+    border-top: 2px solid #444;
+    padding-top: 25px;
+}
+
+.panel-opciones h3 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.informacion {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.acciones button {
+    width: 170px;
+    height: 48px;
+    background: #18d65f;
+    border: 2px solid black;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.acciones button:hover {
+    background: #00ff80;
+}
+
+audio {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #bdbdbd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SEÑAL STELLAR</h1>
+</header>
+
+<main>
+    <h2>Música</h2>
+
+    <div class="contenedor-principal">
+        <!-- ========================= -->
+        <!-- MUSICA DE ACCION -->
+        <!-- ========================= -->
+        <section class="panel-musica">
+            <h3>Música de "Acción"</h3>
+            <div class="lista-musica" id="listaAccion"></div>
+            <div class="botones-panel">
+                <button id="agregarAccion">Agregar</button>
+                <button id="eliminarAccion">Eliminar</button>
+            </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- MUSICA DE BREAK -->
+        <!-- ========================= -->
+        <section class="panel-musica">
+            <h3>Música de "Break"</h3>
+            <div class="lista-musica" id="listaBreak"></div>
+            <div class="botones-panel">
+                <button id="agregarBreak">Agregar</button>
+                <button id="eliminarBreak">Eliminar</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- =============================== -->
+    <!-- PANEL DE OPCIONES -->
+    <!-- =============================== -->
+    <section class="panel-opciones">
+        <h3>Opciones de la canción seleccionada</h3>
+        <div class="informacion">
+            <p><strong>Archivo seleccionado:</strong> <span id="archivoSeleccionado">Ninguno</span></p>
+        </div>
+        <div class="acciones">
+            <button id="escuchar">▶ Escuchar</button>
+            <button id="subir">▲ Subir</button>
+            <button id="bajar">▼ Bajar</button>
+            <button id="eliminarSeleccion">🗑 Eliminar</button>
+        </div>
+    </section>
+
+    <!-- INPUTS OCULTOS -->
+    <input type="file" id="inputAccion" accept=".mp3,.wav,.ogg,.aac,.m4a,.flac" hidden multiple>
+    <input type="file" id="inputBreak" accept=".mp3,.wav,.ogg,.aac,.m4a,.flac" hidden multiple>
+
+    <!-- AUDIO PARA VISTA PREVIA -->
+    <audio id="reproductor"></audio>
+</main>
+
+<script>
+const listaAccion = document.getElementById("listaAccion");
+const listaBreak = document.getElementById("listaBreak");
+
+const inputAccion = document.getElementById("inputAccion");
+const inputBreak = document.getElementById("inputBreak");
+
+const agregarAccion = document.getElementById("agregarAccion");
+const agregarBreak = document.getElementById("agregarBreak");
+
+const archivoSeleccionado = document.getElementById("archivoSeleccionado");
+const reproductor = document.getElementById("reproductor");
+
+let elementoSeleccionado = null;
+let botonPlayActual = null;
+
+// Base de Datos en IndexedDB para guardar canciones de manera permanente
+let db;
+const request = indexedDB.open("StellarMusicDB", 1);
+
+request.onupgradeneeded = function(e) {
+    db = e.target.result;
+    if (!db.objectStoreNames.contains("canciones")) {
+        db.createObjectStore("canciones", { keyPath: "id", autoIncrement: true });
+    }
+};
+
+request.onsuccess = function(e) {
+    db = e.target.result;
+    cargarCancionesGuardadas();
+};
+
+agregarAccion.onclick = () => inputAccion.click();
+agregarBreak.onclick = () => inputBreak.click();
+
+inputAccion.onchange = function() {
+    procesarArchivos(this.files, "accion", listaAccion);
+    this.value = "";
+};
+
+inputBreak.onchange = function() {
+    procesarArchivos(this.files, "break", listaBreak);
+    this.value = "";
+};
+
+function procesarArchivos(listaArchivos, tipo, listaDestino) {
+    for (let archivo of listaArchivos) {
+        if (!archivo.type.startsWith("audio/")) {
+            alert("Ese archivo no es un audio válido.");
+            continue;
+        }
+
+        const transaction = db.transaction(["canciones"], "readwrite");
+        const store = transaction.objectStore("canciones");
+        
+        const nuevaCancion = {
+            nombre: archivo.name,
+            tipo: tipo,
+            archivo: archivo // Guardamos el blob binario directamente
+        };
+
+        const addRequest = store.add(nuevaCancion);
+        addRequest.onsuccess = function(e) {
+            const idGenerado = e.target.result;
+            const url = URL.createObjectURL(archivo);
+            crearElemento(listaDestino, archivo.name, url, idGenerado);
+            renumerar(listaDestino);
+            notificarCambiosAlTemporizador();
+        };
+    }
+}
+
+function crearElemento(lista, nombre, url, idDB) {
+    const fila = document.createElement("div");
+    fila.className = "item-musica";
+    fila.dataset.audio = url;
+    fila.dataset.idDb = idDB; // Identificador en IndexedDB
+
+    const numero = document.createElement("span");
+    numero.className = "numero";
+
+    const play = document.createElement("button");
+    play.className = "play";
+    play.textContent = "▶";
+
+    const texto = document.createElement("span");
+    texto.className = "nombre";
+    texto.textContent = nombre;
+
+    fila.appendChild(numero);
+    fila.appendChild(play);
+    fila.appendChild(texto);
+    lista.appendChild(fila);
+
+    fila.onclick = function(e) {
+        if (e.target === play) return;
+        document.querySelectorAll(".item-musica").forEach(x => x.classList.remove("seleccionado"));
+        fila.classList.add("seleccionado");
+        elementoSeleccionado = fila;
+        archivoSeleccionado.textContent = nombre;
+    };
+
+    play.onclick = function(e) {
+        e.stopPropagation();
+        if (reproductor.src !== url) {
+            reproductor.src = url;
+            reproductor.play();
+            if (botonPlayActual) botonPlayActual.textContent = "▶";
+            play.textContent = "■";
+            botonPlayActual = play;
+        } else {
+            if (reproductor.paused) {
+                reproductor.play();
+                play.textContent = "■";
+            } else {
+                reproductor.pause();
+                play.textContent = "▶";
+            }
+        }
+    };
+
+    reproductor.onended = () => play.textContent = "▶";
+}
+
+function renumerar(lista) {
+    const filas = lista.querySelectorAll(".item-musica");
+    filas.forEach((fila, indice) => {
+        fila.querySelector(".numero").textContent = indice + 1;
+    });
+}
+
+function cargarCancionesGuardadas() {
+    const transaction = db.transaction(["canciones"], "readonly");
+    const store = transaction.objectStore("canciones");
+    const cursorRequest = store.openCursor();
+
+    cursorRequest.onsuccess = function(e) {
+        const cursor = e.target.result;
+        if (cursor) {
+            const cancion = cursor.value;
+            const url = URL.createObjectURL(cancion.archivo);
+            const listaDestino = cancion.tipo === "accion" ? listaAccion : listaBreak;
+            
+            crearElemento(listaDestino, cancion.nombre, url, cancion.id);
+            cursor.continue();
+        } else {
+            renumerar(listaAccion);
+            renumerar(listaBreak);
+            notificarCambiosAlTemporizador();
+        }
+    };
+}
+
+function eliminarDeBaseDatos(id) {
+    const transaction = db.transaction(["canciones"], "readwrite");
+    const store = transaction.objectStore("canciones");
+    store.delete(Number(id));
+}
+
+// Almacena un índice rápido en localStorage para avisarle al temporizador que hay cambios
+function notificarCambiosAlTemporizador() {
+    const listaIdsAccion = Array.from(listaAccion.children).map(el => el.dataset.idDb);
+    const listaIdsBreak = Array.from(listaBreak.children).map(el => el.dataset.idDb);
+    
+    localStorage.setItem("listaMusicaEstructura", JSON.stringify({
+        accion: listaIdsAccion,
+        break: listaIdsBreak
+    }));
+}
+
+//=====================================
+// BOTONES DEL PANEL INFERIOR
+//=====================================
+const botonEscuchar = document.getElementById("escuchar");
+const botonSubir = document.getElementById("subir");
+const botonBajar = document.getElementById("bajar");
+const botonEliminar = document.getElementById("eliminarSeleccion");
+
+botonEscuchar.onclick = function() {
+    if (!elementoSeleccionado) { alert("Seleccione una canción."); return; }
+    elementoSeleccionado.querySelector(".play").click();
+};
+
+botonSubir.onclick = function() {
+    if (!elementoSeleccionado) { alert("Seleccione una canción."); return; }
+    const anterior = elementoSeleccionado.previousElementSibling;
+    if (anterior) {
+        elementoSeleccionado.parentNode.insertBefore(elementoSeleccionado, anterior);
+        renumerar(elementoSeleccionado.parentNode);
+        notificarCambiosAlTemporizador();
+    }
+};
+
+botonBajar.onclick = function() {
+    if (!elementoSeleccionado) { alert("Seleccione una canción."); return; }
+    const siguiente = elementoSeleccionado.nextElementSibling;
+    if (siguiente) {
+        elementoSeleccionado.parentNode.insertBefore(siguiente, elementoSeleccionado);
+        renumerar(elementoSeleccionado.parentNode);
+        notificarCambiosAlTemporizador();
+    }
+};
+
+botonEliminar.onclick = function() {
+    if (!elementoSeleccionado) { alert("Seleccione una canción."); return; }
+
+    if (reproductor.src === elementoSeleccionado.dataset.audio) {
+        reproductor.pause();
+        reproductor.removeAttribute("src");
+        if (botonPlayActual) botonPlayActual.textContent = "▶";
+    }
+
+    eliminarDeBaseDatos(elementoSeleccionado.dataset.idDb);
+
+    const lista = elementoSeleccionado.parentNode;
+    lista.removeChild(elementoSeleccionado);
+    renumerar(lista);
+    
+    archivoSeleccionado.textContent = "Ninguno";
+    elementoSeleccionado = null;
+    notificarCambiosAlTemporizador();
+};
+
+document.getElementById("eliminarAccion").onclick = function() {
+    if (elementoSeleccionado && elementoSeleccionado.parentNode.id === "listaAccion") {
+        botonEliminar.click();
+    } else {
+        alert("Seleccione una canción del panel Acción.");
+    }
+};
+
+document.getElementById("eliminarBreak").onclick = function() {
+    if (elementoSeleccionado && elementoSeleccionado.parentNode.id === "listaBreak") {
+        botonEliminar.click();
+    } else {
+        alert("Seleccione una canción del panel Break.");
+    }
+};
+
+// =====================================
+// CONTROL REMOTO DESDE EL TEMPORIZADOR
+// =====================================
+window.addEventListener('storage', function(e) {
+    if (e.key === 'senalStellarComandoMusica') {
+        const comando = JSON.parse(e.newValue);
+        if (comando.estado === 'play') {
+            const listaId = comando.tipo === 'accion' ? 'listaAccion' : 'listaBreak';
+            const primerItem = document.querySelector(`#${listaId} .item-musica`);
+            if (primerItem) {
+                primerItem.click();
+                const botonPlay = primerItem.querySelector('.play');
+                if (botonPlay) botonPlay.click();
+            }
+        } else if (comando.estado === 'stop') {
+            if (reproductor) {
+                reproductor.pause();
+                if (botonPlayActual) botonPlayActual.textContent = "▶";
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
