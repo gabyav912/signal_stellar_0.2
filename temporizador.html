@@ -1,187 +1,591 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Señal Stellar - Temporizador</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Señal Stellar - Temporizador Accesible</title>
+    <style>
+        :root {
+            --fondo: #0a0a0f;
+            --borde: #44444c;
+            --texto: #ffffff;
+            --texto2: #e0e0e0;
+            --dorado: #ffd700;
+            --verde: #00e676;
+            --rojo: #ff3d00;
+            --azul-largo: #29b6f6;
+            --pantalla: #12121c;
+            --magenta: #d81b60; /* Color para el nuevo botón de música */
+        }
 
-<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-    background:black;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-}
+        body {
+            background-color: var(--fondo);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--texto);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-h1{
-    color:gold;
-}
+        .contenedor-stellar {
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            background: #121212;
+            border: 4px solid var(--borde);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
 
-.contenedor{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:40px;
-    margin-top:30px;
-}
+        .cabecera {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-.contador{
-    padding:20px;
-    font-size:40px;
-    width:120px;
-    border-radius:10px;
-}
+        .cabecera h1 {
+            font-size: 50px;
+            color: var(--dorado);
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
 
-.accion{
-    background:red;
-}
+        .mision-estado {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 15px;
+            background: #1c1c1c;
+            border-radius: 10px;
+            border: 2px solid var(--borde);
+            margin-bottom: 20px;
+            color: var(--dorado);
+        }
 
-.break{
-    background:green;
-}
+        .panel-principal {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            flex-grow: 1;
+            align-items: stretch;
+        }
 
-.temporizador{
-    font-size:50px;
-    margin-top:20px;
-}
+        .sector-tiempos {
+            display: flex;
+            gap: 25px;
+            height: 100%;
+        }
 
-.botones{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
+        .reloj-contenedor {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #181818;
+            border: 3px solid var(--borde);
+            border-radius: 15px;
+            padding: 20px;
+        }
 
-button{
-    background:#2ecc71;
-    border:none;
-    padding:10px;
-    font-size:16px;
-    cursor:pointer;
-}
+        .reloj-titulo {
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: var(--texto2);
+        }
 
-button:hover{
-    background:#27ae60;
-}
+        .pantalla-reloj {
+            background: var(--pantalla);
+            border-radius: 12px;
+            padding: 40px 10px;
+            font-family: monospace;
+            font-size: 90px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            border: 4px solid #2d2d2d;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+        }
 
-</style>
+        .pantalla-reloj.activo-glow {
+            border-color: currentColor;
+            background: #000000;
+        }
+
+        .panel-botones {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reducido un poco para acomodar el 4to botón cómodamente */
+            justify-content: center;
+        }
+
+        .btn-stellar {
+            width: 100%;
+            height: 22%; /* Ajustado el alto proporcional para albergar 4 botones */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px; /* Tamaño ligeramente ajustado para balance visual */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 4px solid #fff;
+            transition: transform 0.1s ease;
+            text-decoration: none;
+        }
+
+        .btn-stellar:active {
+            transform: scale(0.98);
+        }
+
+        .btn-empezar {
+            background-color: var(--verde);
+            color: #000;
+            border-color: #00aa50;
+        }
+
+        .btn-musica {
+            background-color: var(--magenta);
+            color: #fff;
+            border-color: #a01246;
+        }
+
+        .btn-ajustes {
+            background-color: var(--dorado);
+            color: #000;
+            border-color: #c59b00;
+        }
+
+        .btn-abortar {
+            background-color: var(--rojo); /* Corregido para que use el color rojo nativo */
+            color: #ffffff;
+            border-color: #b32d00;
+        }
+
+        .contador-rondas {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--texto2);
+            margin-top: 15px;
+            background: #1c1c1c;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid var(--borde);
+        }
+
+        .aviso-stellar {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border: 8px solid var(--dorado);
+            color: #000000;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 10000;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            display: none;
+        }
+
+        .aviso-stellar.visible {
+            display: block;
+        }
+
+        .aviso-stellar h3 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .aviso-stellar p {
+            font-size: 26px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .aviso-stellar button {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 20px 50px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            display: none;
+        }
+
+        .overlay.visible {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .panel-principal {
+                grid-template-columns: 1fr;
+            }
+            .sector-tiempos {
+                flex-direction: column;
+            }
+            .contenedor-stellar {
+                height: auto;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>SEÑAL-STELLAR</h1>
-<h2>MISION EN CURSO</h2>
+    <div class="contenedor-stellar">
+        <div class="cabecera">
+            <h1>SEÑAL STELLAR</h1>
+        </div>
 
-<div class="contenedor">
+        <div class="mision-estado" id="mision-estado">Listo para comenzar</div>
 
-<div>
-<p>acción</p>
-<div class="contador accion" id="accion">0</div>
-</div>
+        <div class="panel-principal">
+            
+            <div class="sector-tiempos">
+                <div class="reloj-contenedor" id="contenedor-accion">
+                    <div class="reloj-titulo">Acción</div>
+                    <div class="pantalla-reloj" id="display-accion" style="color: var(--rojo);">25:00</div>
+                </div>
 
-<div>
-<p>break</p>
-<div class="contador break" id="break">0</div>
-</div>
+                <div class="reloj-contenedor" id="contenedor-break">
+                    <div class="reloj-titulo" id="titulo-break">Break</div>
+                    <div class="pantalla-reloj" id="display-break" style="color: var(--verde);">05:00</div>
+                </div>
+            </div>
 
-<div>
-<div class="temporizador" id="tiempo">25:00</div>
-</div>
+            <!-- PANEL DE BOTONES ACTUALIZADO -->
+            <div class="panel-botones">
+                <button class="btn-stellar btn-empezar" id="btn-empezar" onclick="controlarTemporizador()">Empezar</button>
+                <button class="btn-stellar btn-musica" onclick="irAMusica()">Música</button>
+                <button class="btn-stellar btn-ajustes" onclick="irAAjustes()">Configurar</button>
+                <button class="btn-stellar btn-abortar" onclick="abortarMision()">Abortar</button>
+            </div>
 
-<div class="botones">
+        </div>
 
-<button onclick="recompensas()">recompensas</button>
-<button onclick="empezar()">empezar</button>
-<button onclick="reanudar()">reproducir</button>
-<button onclick="minimizar()">minimizar</button>
-<button onclick="abortar()">abortar</button>
+        <div class="contador-rondas" id="contador-rondas">
+            Ciclo: 1 de 4
+        </div>
+    </div>
 
-</div>
+    <audio id="audio-alerta" preload="auto"></audio>
 
-</div>
+    <div class="overlay" id="pantalla-overlay"></div>
+    <div class="aviso-stellar" id="aviso-pop">
+        <h3 id="aviso-titulo">¡Fin del Tiempo!</h3>
+        <p id="aviso-mensaje">Es hora de realizar una acción.</p>
+        <button onclick="cerrarAviso()">Entendido</button>
+    </div>
 
-<script>
+    <script>
+        const configKey = "senalStellarAjustes";
+        const canalMusicaKey = "senalStellarComandoMusica";
 
-let tiempo = 1500; 
-let intervalo = null;
-let accion = 0;
-let descanso = 0;
+        const defaultConfig = {
+            colorAccion: "#ff3d00",
+            colorBreak: "#00e676",
+            tiempoPomodoro: "25",
+            tiempoBreak: "5",
+            tiempoDescanso: "15",
+            repeticionesPomodoro: "4",
+            sonidoAlarma: "soft.ogg",
+            volumenAlarma: 80,
+            activarSonido: true,
+            musicaTemporizador: true,
+            musicaBreak: true
+        };
 
-function actualizar(){
-    let minutos = Math.floor(tiempo / 60);
-    let segundos = tiempo % 60;
+        let config = loadConfig();
 
-    if(segundos < 10) segundos = "0" + segundos;
+        let totalPomodoros = 4;
+        let pomodoroActual = 1;
+        
+        let tiempoRestante = 0; 
+        let modoActual = "accion";
+        let timerIntervalo = null;
+        let ejecutando = false;
 
-    document.getElementById("tiempo").textContent =
-        minutos + ":" + segundos;
-}
+        const displayAccion = document.getElementById("display-accion");
+        const displayBreak = document.getElementById("display-break");
+        const tituloBreak = document.getElementById("titulo-break");
+        const btnEmpezar = document.getElementById("btn-empezar");
+        const misionEstado = document.getElementById("mision-estado");
+        const audioAlerta = document.getElementById("audio-alerta");
+        const contadorRondas = document.getElementById("contador-rondas");
 
-function empezar(){
-
-    clearInterval(intervalo);
-
-    tiempo = 1500; 
-    actualizar();
-
-    intervalo = setInterval(() => {
-
-        tiempo--;
-        actualizar();
-
-        if(tiempo <= 0){
-
-            clearInterval(intervalo);
-
-            accion++;
-            document.getElementById("accion").textContent = accion;
-
-            alert("Fin de misión. Tiempo de descanso.");
-
+        function loadConfig() {
+            const datos = localStorage.getItem(configKey);
+            if (datos) {
+                try {
+                    return { ...defaultConfig, ...JSON.parse(datos) };
+                } catch (e) {
+                    return { ...defaultConfig };
+                }
+            }
+            return { ...defaultConfig };
         }
 
-    },1000);
+        function inicializar() {
+            config = loadConfig();
 
-}
+            totalPomodoros = parseInt(config.repeticionesPomodoro) || 4;
+            pomodoroActual = 1;
 
-function reanudar(){
+            document.documentElement.style.setProperty('--rojo', config.colorAccion);
+            document.documentElement.style.setProperty('--verde', config.colorBreak);
+            displayAccion.style.color = config.colorAccion;
+            displayBreak.style.color = config.colorBreak;
 
-    intervalo = setInterval(() => {
+            const minAccion = parseInt(config.tiempoPomodoro);
+            const minBreak = parseInt(config.tiempoBreak);
 
-        tiempo--;
-        actualizar();
+            displayAccion.textContent = `${String(minAccion).padStart(2, '0')}:00`;
+            displayBreak.textContent = `${String(minBreak).padStart(2, '0')}:00`;
 
-        if(tiempo <= 0){
-            clearInterval(intervalo);
+            modoActual = "accion";
+            tiempoRestante = minAccion * 60;
+
+            audioAlerta.src = "audio/" + config.sonidoAlarma;
+            audioAlerta.volume = config.volumenAlarma / 100;
+
+            actualizarContadorRondas();
         }
 
-    },1000);
+        function actualizarContadorRondas() {
+            contadorRondas.textContent = `Pomodoro: ${pomodoroActual} de ${totalPomodoros}`;
+        }
 
-}
+        function enviarComandoMusica(estado, tipo) {
+            const comando = {
+                estado: estado,
+                tipo: tipo,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(canalMusicaKey, JSON.stringify(comando));
+        }
 
-function minimizar(){
+        function controlarTemporizador() {
+            if (ejecutando) {
+                pausarTemporizador();
+            } else {
+                iniciarTemporizador();
+            }
+        }
 
-    clearInterval(intervalo);
+        function iniciarTemporizador() {
+            ejecutando = true;
+            btnEmpezar.textContent = "Pausar";
+            btnEmpezar.style.backgroundColor = "#ff9100";
 
-}
+            if (modoActual === "accion") {
+                displayAccion.classList.add("activo-glow");
+                displayBreak.classList.remove("activo-glow");
+                misionEstado.textContent = "ESTUDIANDO (Acción)";
+                misionEstado.style.color = "var(--rojo)";
+                
+                if (config.musicaTemporizador) {
+                    enviarComandoMusica("play", "accion");
+                }
+            } else if (modoActual === "break") {
+                displayBreak.classList.add("activo-glow");
+                displayAccion.classList.remove("activo-glow");
+                misionEstado.textContent = "DESCANSO CORTO (Break)";
+                misionEstado.style.color = "var(--verde)";
 
-function abortar(){
+                if (config.musicaBreak) {
+                    enviarComandoMusica("play", "break");
+                }
+            } else if (modoActual === "descanso_largo") {
+                displayBreak.classList.add("activo-glow");
+                displayAccion.classList.remove("activo-glow");
+                misionEstado.textContent = "DESCANSO LARGO";
+                misionEstado.style.color = "var(--azul-largo)";
+                
+                enviarComandoMusica("stop", "break");
+            }
 
-    clearInterval(intervalo);
+            timerIntervalo = setInterval(() => {
+                if (tiempoRestante > 0) {
+                    tiempoRestante--;
+                    actualizarDisplays();
+                } else {
+                    finalizarCiclo();
+                }
+            }, 1000);
+        }
 
-    tiempo = 1500;
-    actualizar();
+        function pausarTemporizador() {
+            ejecutando = false;
+            clearInterval(timerIntervalo);
+            btnEmpezar.textContent = "Reanudar";
+            btnEmpezar.style.backgroundColor = "var(--verde)";
+            
+            enviarComandoMusica("stop", modoActual);
+        }
 
-}
+        function actualizarDisplays() {
+            const minutos = Math.floor(tiempoRestante / 60);
+            const segundos = tiempoRestante % 60;
+            const formato = `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
 
-function recompensas(){
+            if (modoActual === "accion") {
+                displayAccion.textContent = formato;
+            } else {
+                displayBreak.textContent = formato;
+            }
+        }
 
-    alert("Sistema de recompensas próximamente");
+        function finalizarCiclo() {
+            clearInterval(timerIntervalo);
+            ejecutando = false;
 
-}
+            enviarComandoMusica("stop", modoActual);
 
-actualizar();
+            if (config.activarSonido) {
+                audioAlerta.currentTime = 0;
+                audioAlerta.play().catch(e => console.log("Audio bloqueado"));
+            }
 
-</script>
+            if (modoActual === "accion") {
+                if (pomodoroActual >= totalPomodoros) {
+                    tituloBreak.textContent = "D. Largo";
+                    displayBreak.style.color = "var(--azul-largo)";
+                    
+                    mostrarAviso(
+                        "¡Meta Alcanzada!", 
+                        "Has terminado todos tus pomodoros. Ahora inicia un descanso largo para despejarte.",
+                        () => {
+                            modoActual = "descanso_largo";
+                            tiempoRestante = parseInt(config.tiempoDescanso) * 60;
+                            actualizarDisplays();
+                            iniciarTemporizador();
+                        }
+                    );
+                } else {
+                    tituloBreak.textContent = "Break";
+                    displayBreak.style.color = "var(--verde)";
 
+                    mostrarAviso(
+                        "¡Hora de Descansar!", 
+                        "Buen trabajo en este bloque. Tómate un respiro corto.",
+                        () => {
+                            modoActual = "break";
+                            tiempoRestante = parseInt(config.tiempoBreak) * 60;
+                            actualizarDisplays();
+                            iniciarTemporizador();
+                        }
+                    );
+                }
+            } else if (modoActual === "break") {
+                pomodoroActual++;
+                actualizarContadorRondas();
+
+                mostrarAviso(
+                    "¡A Estudiar!", 
+                    "El descanso ha terminado. Volvamos al estudio con energía.",
+                    () => {
+                        modoActual = "accion";
+                        tiempoRestante = parseInt(config.tiempoPomodoro) * 60;
+                        actualizarDisplays();
+                        iniciarTemporizador();
+                    }
+                );
+            } else if (modoActual === "descanso_largo") {
+                pomodoroActual = 1;
+                actualizarContadorRondas();
+                tituloBreak.textContent = "Break";
+                displayBreak.style.color = "var(--verde)";
+
+                mostrarAviso(
+                    "¡Ciclo Completado!", 
+                    "Has completado toda la sesión. ¿Listo para comenzar una nueva tanda?",
+                    () => {
+                        modoActual = "accion";
+                        tiempoRestante = parseInt(config.tiempoPomodoro) * 60;
+                        actualizarDisplays();
+                        iniciarTemporizador();
+                    }
+                );
+            }
+        }
+
+        let callbackActual = null;
+        function mostrarAviso(titulo, mensaje, callback) {
+            document.getElementById("aviso-titulo").textContent = titulo;
+            document.getElementById("aviso-mensaje").textContent = mensaje;
+            
+            document.getElementById("pantalla-overlay").classList.add("visible");
+            document.getElementById("aviso-pop").classList.add("visible");
+            
+            callbackActual = callback;
+        }
+
+        function cerrarAviso() {
+            document.getElementById("pantalla-overlay").classList.remove("visible");
+            document.getElementById("aviso-pop").classList.remove("visible");
+            
+            audioAlerta.pause();
+            audioAlerta.currentTime = 0;
+
+            if (callbackActual) {
+                callbackActual();
+                callbackActual = null;
+            }
+        }
+
+        function irAAjustes() {
+            window.location.href = "ajustes.html";
+        }
+
+        function irAMusica() {
+            window.location.href = "musica.html";
+        }
+
+        function abortarMision() {
+            if (confirm("¿Estás seguro de que deseas cancelar la sesión actual?")) {
+                clearInterval(timerIntervalo);
+                ejecutando = false;
+                enviarComandoMusica("stop", "accion");
+                enviarComandoMusica("stop", "break");
+                window.location.href = "main.html";
+            }
+        }
+
+        window.onload = inicializar;
+    </script>
 </body>
 </html>
