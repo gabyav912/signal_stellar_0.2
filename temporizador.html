@@ -15,7 +15,7 @@
             --rojo: #ff3d00;
             --azul-largo: #29b6f6;
             --pantalla: #12121c;
-            --magenta: #d81b60; /* Color para el nuevo botón de música */
+            --magenta: #d81b60;
         }
 
         * {
@@ -129,17 +129,17 @@
         .panel-botones {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Reducido un poco para acomodar el 4to botón cómodamente */
+            gap: 15px;
             justify-content: center;
         }
 
         .btn-stellar {
             width: 100%;
-            height: 22%; /* Ajustado el alto proporcional para albergar 4 botones */
+            height: 22%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px; /* Tamaño ligeramente ajustado para balance visual */
+            font-size: 28px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -173,7 +173,7 @@
         }
 
         .btn-abortar {
-            background-color: var(--rojo); /* Corregido para que use el color rojo nativo */
+            background-color: var(--rojo);
             color: #ffffff;
             border-color: #b32d00;
         }
@@ -266,6 +266,9 @@
 </head>
 <body>
 
+    <!-- MODIFICACIÓN CLAVE DE GITHUB: iframe invisible para ejecutar el audio en segundo plano -->
+    <iframe src="musica.html" style="display:none;" id="reproductor-segundo-plano"></iframe>
+
     <div class="contenedor-stellar">
         <div class="cabecera">
             <h1>SEÑAL STELLAR</h1>
@@ -274,7 +277,6 @@
         <div class="mision-estado" id="mision-estado">Listo para comenzar</div>
 
         <div class="panel-principal">
-            
             <div class="sector-tiempos">
                 <div class="reloj-contenedor" id="contenedor-accion">
                     <div class="reloj-titulo">Acción</div>
@@ -287,14 +289,12 @@
                 </div>
             </div>
 
-            <!-- PANEL DE BOTONES ACTUALIZADO -->
             <div class="panel-botones">
                 <button class="btn-stellar btn-empezar" id="btn-empezar" onclick="controlarTemporizador()">Empezar</button>
                 <button class="btn-stellar btn-musica" onclick="irAMusica()">Música</button>
                 <button class="btn-stellar btn-ajustes" onclick="irAAjustes()">Configurar</button>
                 <button class="btn-stellar btn-abortar" onclick="abortarMision()">Abortar</button>
             </div>
-
         </div>
 
         <div class="contador-rondas" id="contador-rondas">
@@ -330,10 +330,8 @@
         };
 
         let config = loadConfig();
-
         let totalPomodoros = 4;
         let pomodoroActual = 1;
-        
         let tiempoRestante = 0; 
         let modoActual = "accion";
         let timerIntervalo = null;
@@ -361,7 +359,6 @@
 
         function inicializar() {
             config = loadConfig();
-
             totalPomodoros = parseInt(config.repeticionesPomodoro) || 4;
             pomodoroActual = 1;
 
@@ -473,6 +470,7 @@
             clearInterval(timerIntervalo);
             ejecutando = false;
 
+            // CORTE BRUTO DE MÚSICA AL LLEGAR A ZERO
             enviarComandoMusica("stop", modoActual);
 
             if (config.activarSonido) {
@@ -571,10 +569,9 @@
             window.location.href = "ajustes.html";
         }
 
+        // MODIFICACIÓN DE NAVEGACIÓN: Abre la gestión de música en nueva pestaña sin cerrar el reloj
         function irAMusica() {
-    // '_blank' obliga al navegador a abrir el enlace en una pestaña nueva
             window.open("musica.html", "_blank");
-        }
         }
 
         function abortarMision() {
