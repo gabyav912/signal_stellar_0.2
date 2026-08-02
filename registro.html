@@ -2,61 +2,105 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registro - Señal Stellar</title>
 
 <style>
 
-body{
-background:#0b0b0b;
-color:white;
-font-family:Georgia, serif;
-margin:0;
-text-align:center;
+/* Hacemos que el cuerpo ocupe todo el alto y no tenga scroll innecesario */
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
-header{
-background:black;
-padding:20px;
+body {
+    background: #0b0b0b;
+    color: white;
+    font-family: Georgia, serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Estructura vertical: header -> main -> footer */
 }
 
-header h1{
-color:gold;
-margin:0;
+header {
+    background: black;
+    padding: 20px;
 }
 
-.contenedor{
-width:400px;
-margin:auto;
-margin-top:80px;
-background:#111;
-padding:30px;
-border-radius:8px;
+header h1 {
+    color: gold;
+    margin: 0;
 }
 
-input{
-width:90%;
-padding:10px;
-margin:10px;
-border:none;
-border-radius:4px;
+/* El <main> ocupa todo el espacio libre restante en pantalla */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    padding: 20px;
 }
 
-button{
-background:#27ae60;
-color:white;
-border:none;
-padding:12px 20px;
-font-size:16px;
-cursor:pointer;
-border-radius:4px;
+/* La tarjeta/columna del formulario */
+.contenedor-registro {
+    width: 100%;
+    max-width: 400px;
+    background: #111;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-button:hover{
-background:#2ecc71;
+h2 {
+    color: gold;
+    margin-top: 0;
 }
 
-a{
-text-decoration:none;
+/* Alineación en columna para los elementos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: gold;
+}
+
+button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #2ecc71;
+}
+
+footer {
+    background: black;
+    padding: 15px;
+}
+
+footer p {
+    margin: 0;
 }
 
 </style>
@@ -64,29 +108,28 @@ text-decoration:none;
 
 <body>
 
-<header>
-<h1>SEÑAL-STELLAR</h1>
-</header>
+    <header>
+        <h1>SEÑAL-STELLAR</h1>
+    </header>
 
-<div class="contenedor">
+    <main>
+        <section class="contenedor-registro">
+            <h2>Crear cuenta</h2>
 
-<h2>Crear cuenta</h2>
+            <form action="main.html" method="GET">
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Correo" required>
+                <input type="password" placeholder="Contraseña" required>
+                <input type="password" placeholder="Confirmar contraseña" required>
 
-<input type="text" placeholder="Nombre">
+                <button type="submit">Crear cuenta</button>
+            </form>
+        </section>
+    </main>
 
-<input type="email" placeholder="Correo">
-
-<input type="password" placeholder="Contraseña">
-
-<input type="password" placeholder="Confirmar contraseña">
-
-<br><br>
-
-<a href="main.html">
-<button>Crear cuenta</button>
-</a>
-
-</div>
+    <footer>
+        <p>Señal stellar &copy; 2026</p>
+    </footer>
 
 </body>
 </html>
