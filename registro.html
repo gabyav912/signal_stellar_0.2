@@ -56,19 +56,6 @@
             font-family: sans-serif;
         }
 
-        .avatar-usuario {
-            background-color: var(--texto-blanco);
-            color: var(--fondo-base);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            font-family: sans-serif;
-        }
 
         /* --- PANEL PRINCIPAL CENTRADO --- */
         main.contenido-principal {
@@ -169,7 +156,7 @@
             text-decoration: underline;
         }
 
-        /* --- BOTONES DE ACCIÓN DEL FORMULARIO --- */
+        /* --- BOTONES DE ACCIÓN --- */
         .panel-acciones {
             display: flex;
             gap: 15px;
@@ -211,16 +198,16 @@
             <h1>SEÑAL-STELLAR</h1>
             <p>Registro de usuario</p>
         </div>
-        <div class="avatar-usuario" title="Perfil de Gabriel">GA</div>
+        
     </header>
 
-    <!-- Contenido Central Único -->
+    <!-- Contenido Principal -->
     <main class="contenido-principal">
         <h2 class="seccion-titulo">Formulario de registro</h2>
 
         <form id="form-registro" onsubmit="guardarRegistro(event)">
             
-            <!-- Datos de Cuenta -->
+            <!-- Datos de Acceso -->
             <fieldset>
                 <legend>Datos de acceso</legend>
                 
@@ -245,7 +232,7 @@
                 </div>
             </fieldset>
 
-            <!-- Ubicación y Biografía -->
+            <!-- Ubicación y Descripción -->
             <fieldset>
                 <legend>Perfil estelar</legend>
 
@@ -282,7 +269,7 @@
                 </div>
             </fieldset>
 
-            <!-- Acciones de Registro -->
+            <!-- Acciones -->
             <section class="panel-acciones">
                 <button type="button" class="btn-accion btn-cancelar" onclick="cancelarRegistro()">Cancelar</button>
                 <button type="submit" class="btn-accion btn-guardar">Guardar Registro</button>
@@ -303,6 +290,7 @@
                 descripcion: document.getElementById("descripcion").value
             };
 
+            // Guarda la información en localStorage para que main.html la lea automáticamente
             localStorage.setItem("usuarioStellarPerfil", JSON.stringify(usuario));
             alert("Perfil guardado correctamente.");
             window.location.href = "main.html";
