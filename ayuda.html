@@ -67,6 +67,24 @@
             padding-bottom: 10px;
         }
 
+        /* Caja de video adaptada */
+        .video-box {
+            background: rgba(30, 30, 50, 0.6);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .video-box video {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            outline: none;
+        }
+
         .manual-section {
             margin-bottom: 30px;
             padding: 20px;
@@ -204,13 +222,6 @@
             color: #000;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
         .footer {
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
@@ -221,21 +232,10 @@
         }
 
         @media (max-width: 600px) {
-            .title {
-                font-size: 32px;
-            }
-
-            .subtitle {
-                font-size: 24px;
-            }
-
-            .content {
-                padding: 20px 15px;
-            }
-
-            .manual-section {
-                padding: 15px;
-            }
+            .title { font-size: 32px; }
+            .subtitle { font-size: 24px; }
+            .content { padding: 20px 15px; }
+            .manual-section { padding: 15px; }
         }
     </style>
 </head>
@@ -250,12 +250,22 @@
 
         <!-- Contenido Principal -->
         <div class="content">
+            
+            <!-- SECCIÓN DEL VIDEO (HTML5 Nativo) -->
+            <div class="video-box">
+                <div class="section-title">Video Guía: Gestión de Tiempo y Pomodoro</div>
+                <video controls autoplay muted loop poster="poster-stellar.jpg" preload="auto">
+                    <source src="tutorial.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video de HTML5.
+                </video>
+            </div>
+
             <div class="section-title">Manual de Vuelo Señal-stellar</div>
             <p style="text-align: center; margin-bottom: 30px; color: #b8860b;">
                 ¡Bienvenido a bordo, Comandante! Esta guía te ayudará a dominar las funciones de tu nave para conquistar tus metas.
             </p>
 
-            <!-- Sección 1: Centro de Mando (Inicio) -->
+            <!-- Sección 1 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">1.</span>
@@ -267,7 +277,7 @@
                 </div>
             </div>
 
-            <!-- Sección 2: Laboratorio (Personalización) -->
+            <!-- Sección 2 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">2.</span>
@@ -283,7 +293,7 @@
                 </div>
             </div>
 
-            <!-- Sección 3: En Órbita (Misión en Curso) -->
+            <!-- Sección 3 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">3.</span>
@@ -299,7 +309,7 @@
                 </div>
             </div>
 
-            <!-- Sección 4: Módulo de Descanso -->
+            <!-- Sección 4 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">4.</span>
@@ -311,7 +321,7 @@
                 </div>
             </div>
 
-            <!-- Sección 5: Bóveda (Sector Explorado) -->
+            <!-- Sección 5 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">5.</span>
@@ -327,7 +337,7 @@
                 </div>
             </div>
 
-            <!-- Sección 6: Suministros Sonoros (Música) -->
+            <!-- Sección 6 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">6.</span>
@@ -339,7 +349,7 @@
                 </div>
             </div>
 
-            <!-- Sección 7: Tip de Navegación -->
+            <!-- Sección 7 -->
             <div class="manual-section">
                 <div class="section-header">
                     <span class="section-number">7.</span>
@@ -351,7 +361,7 @@
                 </div>
             </div>
 
-            <!-- Botones de Navegación -->
+            <!-- Botones -->
             <div class="button-group">
                 <button class="btn" onclick="expandAll()">Expandir Todo</button>
                 <button class="btn btn-secondary" onclick="collapseAll()">Contraer Todo</button>
@@ -367,10 +377,8 @@
     </div>
 
     <script>
-        // Obtener todos los manual-section
         const sections = document.querySelectorAll('.manual-section');
 
-        // Agregar evento click a cada sección
         sections.forEach(section => {
             section.classList.add('collapsed');
             section.addEventListener('click', function() {
@@ -378,26 +386,22 @@
             });
         });
 
-        // Expandir todas las secciones
         function expandAll() {
             sections.forEach(section => {
                 section.classList.remove('collapsed');
             });
         }
 
-        // Contraer todas las secciones
         function collapseAll() {
             sections.forEach(section => {
                 section.classList.add('collapsed');
             });
         }
 
-        // Ir al login
         function irAlLogin() {
             window.location.href = 'login.html';
         }
 
-        // Evitar que el click en los botones cierre las secciones
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
